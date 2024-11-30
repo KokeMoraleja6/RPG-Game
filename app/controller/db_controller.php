@@ -3,7 +3,7 @@ require_once "model/user.php";
 
 class Db_controller
 {
-    protected static $dbdestination = "mysql:host=localhost:8081;charset=utf8mb4";
+    protected static $dbdestination = "mysql:host=localhost;charset=utf8mb4";
     protected static $dbname = "dungeon_server";
     protected static $dbuser = "root";
     protected static $dbpassword = "";

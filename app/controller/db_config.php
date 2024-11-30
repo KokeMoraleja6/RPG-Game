@@ -1,12 +1,12 @@
 <?php
-$destination = "mysql:host=localhost:8081;charset=utf8mb4";//Para el resto de conexiones
+$destination = "mysql:host=localhost;charset=utf8mb4";//Para el resto de conexiones
 $dbname = "dungeon_server"; 
 $user = "root";
 $password = "";
 
 try {
     // Creamos conexion con la mysql
-    $conn = new PDO("mysql:host=localhost:8081;charset=utf8mb4", $user, $password);
+    $conn = new PDO("mysql:host=localhost;charset=utf8mb4", $user, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     //Comprobamos si la base de datos existe
@@ -38,8 +38,6 @@ try {
             username VARCHAR(50) UNIQUE NOT NULL
         )";
         $conn->exec($create_table_query);
-
-
     }
 
 } catch (PDOException $e) {
