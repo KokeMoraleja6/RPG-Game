@@ -147,18 +147,42 @@
 
 /*game.php*/
 .bodygame {
+    background-color: #888;
+    display: flex;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; 
+}
+
+.parchment {
+    position: relative; /* Posiciona el contenedor para que los elementos hijos con position:absolute se ubiquen sobre él */
+    display: inline-block; /* Ajusta al tamaño de su contenido */
+}
+
+.parchment img {
+    display: block; /* Evita el espacio extra debajo de la imagen */
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */
+    height: auto; /* Mantén la proporción */
+}
+
+.board{
+    background-image:url("../resources/table.jpeg") ;
+    width: 650px;
+    height: 550px;
     display: flex;
     justify-content: center;
-    height: 100vh;
+    align-items: center;
+    border-radius: 7px;
 }
 
 .gametable {
-    width: 650px;
-    height: 550px;
+    width: 600px;
+    height: 500px;
     border-collapse: collapse;
     table-layout: fixed;
     background-color: #333;
-    border: 2px solid #ccc;
+    border: 2px solid #c2a97f;
     box-sizing: border-box;
 }
 
@@ -167,7 +191,7 @@
     height: 1%;
     padding: 0;
     text-align: center;
-    border: 1px solid #ccc;
+    border: 1px solid #c29f7f;
     margin: 0;
     box-sizing: border-box;
 }
@@ -203,13 +227,16 @@
 }
 
 .direction-buttons {
+    position: absolute; /* Superpone el formulario sobre la imagen */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro exacto */
     display: grid;
     grid-template-columns: 50px 50px 50px;
     grid-template-rows: 50px 50px 50px;
     gap: 10px;
     justify-items: center;
     align-items: center;
-    box-sizing: border-box;
 }
 
 .direction-buttons button {
@@ -219,11 +246,7 @@
     border: 2px solid #888;
     color: white;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-align: center;
-    box-sizing: border-box;
 }
 
 .direction-buttons button:hover {
@@ -250,6 +273,6 @@
 }
 
 .direction-buttons .down {
-    grid-row: 3;
+    grid-row: 2;
     grid-column: 2;
 }

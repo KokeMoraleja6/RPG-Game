@@ -18,7 +18,7 @@
     require_once "../controller/map_controller.php";
     require_once "../model/Characters/Pruebas.php";
     session_start();
-    
+
 
     //Pruebas
     if (isset($_SESSION['originMap'], $_SESSION['fogMap'], $_SESSION['character'])) {
@@ -34,7 +34,7 @@
         $_SESSION['character'] = $character;
     }
 
-    if ($_SERVER["REQUEST_METHOD"] === "POST"){
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (isset($_POST['up'])) {
             $character->move($_POST['up']);
         }
@@ -50,21 +50,25 @@
     }
 
     ?>
-    <video autoplay muted loop class="background-video">
-        <source src="../resources/videos/fog.mp4" type="video/mp4">
-    </video>
 
-    <form action="#" method="post" class="direction-buttons" >
-        <button type='submit' name='up' class="up" value="up">↑</button>
-        <button type='submit' name='left' class="left" value="left">←</button>
-        <button type='submit' name='right' class="right" value="right">→</button>
-        <button type='submit' name='down' class="down" value="down">↓</button>
-    </form>
-
+    <div class="parchment">
+        <img src="../resources/parchment.jpeg" alt="parchment" />
+    </div>
 
     <?php
     Map_controller::drawMap($fogmap, $originmap, $character);
     ?>
+
+    <div class="parchment">
+        <img src="../resources/parchment.jpeg" alt="parchment" />
+        <form action="#" method="post" class="direction-buttons">
+            <button type='submit' name='up' class="up" value="up">↑</button>
+            <button type='submit' name='left' class="left" value="left">←</button>
+            <button type='submit' name='right' class="right" value="right">→</button>
+            <button type='submit' name='down' class="down" value="down">↓</button>
+        </form>
+    </div>
+
 
 </body>
 

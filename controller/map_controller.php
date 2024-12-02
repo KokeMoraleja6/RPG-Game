@@ -55,20 +55,20 @@ class Map_controller
         $fogmap[$character->y][$character->x] = $originmap[$character->y][$character->x];
 
         if ($character->y < count($fogmap) - 1) { //Desvelo casilla de abajo a no ser que este en el limite
-            $fogmap[$character->y + 1][$character->x] = $originmap[$character->y + 1][$character->x];
+            //$fogmap[$character->y + 1][$character->x] = $originmap[$character->y + 1][$character->x];
         }
         if ($character->y > 0) { //Desvelo casilla de arriba a no ser que este en el limite
-            $fogmap[$character->y - 1][$character->x] = $originmap[$character->y - 1][$character->x];
+            //$fogmap[$character->y - 1][$character->x] = $originmap[$character->y - 1][$character->x];
         }
         if ($character->x > 0) { //Desvelo casilla de la izquierda a no ser que este en el limite
-            $fogmap[$character->y][$character->x - 1] = $originmap[$character->y][$character->x - 1];
+            //$fogmap[$character->y][$character->x - 1] = $originmap[$character->y][$character->x - 1];
         }
         if ($character->x < count($fogmap[0]) - 1) { //Desvelo casilla de la derecha a no ser que este en el limite
-            $fogmap[$character->y][$character->x + 1] = $originmap[$character->y][$character->x + 1];
+            //$fogmap[$character->y][$character->x + 1] = $originmap[$character->y][$character->x + 1];
         }
 
         $_SESSION['fogMap'] = $fogmap; //Guardo el estado del mapa
-
+        echo "<div class='board'>";
         echo "<table class='gametable'>";
         for ($i = 0; $i < count($fogmap); $i++) {
             for ($j = 0; $j < count($fogmap[$i]); $j++) {
@@ -129,5 +129,6 @@ class Map_controller
             echo "</tr>";
         }
         echo "</table>";
+        echo "</div>";
     }
 }
