@@ -68,7 +68,7 @@ class Map_controller
         }
 
         $_SESSION['fogMap'] = $fogmap; //Guardo el estado del mapa
-        echo "<div class='board'>";
+        
         echo "<table class='gametable'>";
         for ($i = 0; $i < count($fogmap); $i++) {
             for ($j = 0; $j < count($fogmap[$i]); $j++) {
@@ -129,6 +129,5 @@ class Map_controller
             echo "</tr>";
         }
         echo "</table>";
-        echo "</div>";
     }
 }
