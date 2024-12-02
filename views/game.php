@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap"
         rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body class="bodygame">
@@ -53,14 +54,54 @@
 
     <div class="parchment">
         <img src="../resources/parchment.jpeg" alt="parchment" />
+        <div class="characterInfo">
+            <div class="mainInfo">
+                <img src="../resources/characters/p1v1.png" alt="character" />
+                <div>
+                    <p>Name: Juan de Dios</p>
+                    <p>Alias: Mr. Listo</p>
+                    <p>3 Lvl 20/100 Exp</p>
+                </div>
+            </div>
+            <div class="statsInfo">
+                <div class="stats">
+                    <p>Strength: 15</p>
+                    <p>Dexterity: 13</p>
+                    <p>Constitution: 14</p>
+                </div>
+                <div class="stats">
+                    <p>Intelligence: 12</p>
+                    <p>Wisdom: 10</p>
+                    <p>Charisma: 8</p>
+                </div>
+            </div>
+            <div class="weapons">
+                <div class="weapon">
+                <img src="../resources/weapons/sword1.png" alt="sword">
+                </div>
+                <div class="weapon">
+                <img src="../resources/weapons/sword1.png" alt="sword">
+                </div>
+            </div>
+        </div>
     </div>
 
-    <?php
-    Map_controller::drawMap($fogmap, $originmap, $character);
-    ?>
+    <div class='board'>
+        <?php
+        Map_controller::drawMap($fogmap, $originmap, $character);
+        ?>
 
+        <div class="game-log">
+            <div class="game-text">
+                <p class="animated-text">Esto es una prueba</p>
+            </div>
+        </div>
+    </div>
     <div class="parchment">
-        <img src="../resources/parchment.jpeg" alt="parchment" />
+        <div class="logo">
+            <h1 class="title">Mistbringer's</h1>
+            <h1 class="subtitle">Dungeon</h1>
+        </div>
         <form action="#" method="post" class="direction-buttons">
             <button type='submit' name='up' class="up" value="up">↑</button>
             <button type='submit' name='left' class="left" value="left">←</button>

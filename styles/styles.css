@@ -30,18 +30,34 @@
     align-items: center;
 }
 
-.subtitle {
-    font-family: 'Press Start 2P', cursive;
+.title {
+    font-family: "UnifrakturCook", cursive;
     text-shadow:
         -4px -4px 0 rgba(0, 0, 0, 0.8), 4px -4px 0 rgba(0, 0, 0, 0.8), -4px 4px 0 rgba(0, 0, 0, 0.8), 4px 4px 0 rgba(0, 0, 0, 0.8), 9px 9px 0 rgba(0, 0, 0, 0.4);
     color: white;
-    font-size: 315%;
+    font-size: 350%;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
     text-align: center;
     margin: 0;
+    animation: fall-from-sky 1s ease-out forwards;
+}
+.subtitle{
+    font-family: "UnifrakturCook", cursive;
+    text-shadow:
+        -4px -4px 0 rgba(0, 0, 0, 0.8), 4px -4px 0 rgba(0, 0, 0, 0.8), -4px 4px 0 rgba(0, 0, 0, 0.8), 4px 4px 0 rgba(0, 0, 0, 0.8), 9px 9px 0 rgba(0, 0, 0, 0.4);
+    color: white;
+    font-size: 350%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    text-align: center;
+    margin: 0;
+    margin-top: -5%;
+    margin-bottom: 3%;
     animation: fall-from-sky 1s ease-out forwards;
 }
 
@@ -147,43 +163,99 @@
 
 /*game.php*/
 .bodygame {
+    font-family: 'Press Start 2P', cursive;
     background-color: #888;
     display: flex;
     height: 100vh;
     margin: 0;
     padding: 0;
-    overflow: hidden; 
+    overflow: hidden;
+    background-image: url("../resources/table.jpeg");
 }
 
 .parchment {
-    position: relative; /* Posiciona el contenedor para que los elementos hijos con position:absolute se ubiquen sobre él */
-    display: inline-block; /* Ajusta al tamaño de su contenido */
+    position: relative;
+    display: inline-block;
+    width: 35%;
+    height: 100%;
+    font-family: "UnifrakturCook", cursive;
 }
 
-.parchment img {
-    display: block; /* Evita el espacio extra debajo de la imagen */
-    width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */
-    height: auto; /* Mantén la proporción */
+.parchment > img {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; 
+}
+.characterInfo{
+    text-align: left;
+    height: 80%;
+    margin-top: 35%;
+    margin-left: 30%;
+    margin-right: 17%;
 }
 
-.board{
-    background-image:url("../resources/table.jpeg") ;
-    width: 650px;
-    height: 550px;
+.mainInfo{
     display: flex;
-    justify-content: center;
+    height: 20%;
+    align-items: stretch; /* Asegura que los hijos ocupen toda la altura */
+    gap: 4%;
+}
+
+.mainInfo > img {
+    height: 100%; /* La imagen ocupa toda la altura de .mainInfo */
+    width: auto; /* Mantiene las proporciones de la imagen */
+    object-fit: contain; /* Ajusta la imagen dentro de su contenedor sin recortes */
+}
+.statsInfo{
+    display: flex;
+    gap: 15%;
+}
+
+.stats{
+    display: flex;
+    flex-direction: column;
+}
+
+.weapons{
+    display: flex;
+    gap: 15%;
+    height: 20%;
+}
+
+.weapon{
+    height: 80%;
+    width: 30%;
+    background-color: #333;
+    border: 2px solid #c2a97f;
+}
+.weapon > img {
+    display: flex;
     align-items: center;
-    border-radius: 7px;
+    justify-content: center;
+    height: 100%; 
+    width: auto; 
+    object-fit: contain; 
+}
+
+
+
+.board {
+    display: flex;
+    flex-direction: column;
 }
 
 .gametable {
-    width: 600px;
-    height: 500px;
+    width: 650px;
+    height: 75%;
     border-collapse: collapse;
     table-layout: fixed;
     background-color: #333;
     border: 2px solid #c2a97f;
     box-sizing: border-box;
+    border: solid 5px #c2a97f;
 }
 
 .gametable td {
@@ -204,13 +276,13 @@
 }
 
 .cell-content {
-    position: relative; 
+    position: relative;
     width: 100%;
     height: 100%;
 }
 
 .cell-content img {
-    position: absolute; 
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
@@ -219,18 +291,46 @@
 }
 
 .biome {
-    z-index: 1; 
+    z-index: 1;
 }
 
 .character {
-    z-index: 2; 
+    z-index: 2;
+}
+
+.game-log {
+    border-radius: 10px;
+    border: solid 8px #000;
+    width: 100%;
+    height: 25%;
+    padding: 0.2%;
+    background-color: #cfa122;
+    box-sizing: border-box;
+}
+
+.game-text {
+    background-color: rgba(255, 255, 255, 0.8);
+    border: solid #424242;
+    border-radius: 10px;
+    border-right: 20px solid #424242;
+    border-left: 20px solid #424242;
+    border-top: 10px solid #424242;
+    border-bottom: 10px solid #424242;
+    font-size: 150%;
+    padding: 1%;
+    height: 100%;
+    box-sizing: border-box;
 }
 
 .direction-buttons {
-    position: absolute; /* Superpone el formulario sobre la imagen */
-    top: 50%; /* Centra verticalmente */
-    left: 50%; /* Centra horizontalmente */
-    transform: translate(-50%, -50%); /* Ajusta el centro exacto */
+    position: absolute;
+    /* Superpone el formulario sobre la imagen */
+    top: 50%;
+    /* Centra verticalmente */
+    left: 50%;
+    /* Centra horizontalmente */
+    transform: translate(-50%, -50%);
+    /* Ajusta el centro exacto */
     display: grid;
     grid-template-columns: 50px 50px 50px;
     grid-template-rows: 50px 50px 50px;
