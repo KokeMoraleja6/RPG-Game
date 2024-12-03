@@ -1,9 +1,11 @@
 <?php
 
 require_once "Weapon.php";
+require_once "Hunter.php";
 
 class BowWeapon extends Weapon {
 
+    // Constructor
     public function __construct(string $rarity) {
         switch ($rarity) {
             case "common":
@@ -17,6 +19,23 @@ class BowWeapon extends Weapon {
                 break;
             default:
                 parent::__construct("Common Bow", 0, 3, 0, "common");
+                break;
+        }
+    }
+
+    // Methods
+    public function getImage(Hunter $hunter): string{
+        $weapon = $hunter->getWeapon();
+        $rarity = $weapon->rarity;
+        switch($rarity){
+            case "common":
+                return "../resources/weapons/bow1.png";
+                break;
+            case "rare":
+                return "../resources/weapons/bow2.png";
+                break;
+            case "legendary":
+                return "../resources/weapons/bow3.png";
                 break;
         }
     }

@@ -27,7 +27,8 @@ abstract class Enemy{
         $this->y = $y;
         $this->exp = $exp;
     }
-
+  
+    
     // Getters
     public function getName(): string {
         return $this->name;
@@ -62,7 +63,7 @@ abstract class Enemy{
     }
 
     // Methods
-    abstract public function attack():int;
+    abstract public function attack(): int ;
 
     protected function throwDice(): int{
         return rand(1,20);

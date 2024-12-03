@@ -9,6 +9,8 @@ class Wizard extends Character{
     // Properties
     protected Weapon $weapon;
     protected Armor $armor;
+    protected string $big_img = "../resources/characters/p2v1.png";
+    protected string $small_img = "../resources/characters/p2v2.png";
 
     // Constructor
     public function __construct(string $name, string $alias, string $race, int $level, int $exp, int $strength, int $dexterity, int $constitution, int $intelligence, 
@@ -91,6 +93,14 @@ class Wizard extends Character{
     
     public function getItems(): array {
         return $this->items;
+    }
+
+    public function getBigImage(): string {
+        return $this->big_img;
+    }
+
+    public function getSmallImage(): string {
+        return $this->small_img;
     }
 
     // Methods

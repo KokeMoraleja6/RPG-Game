@@ -8,6 +8,9 @@ class Hunter extends Character{
     //Properties
     protected Armor $armor; 
     protected Weapon $weapon;
+    protected string $big_img = "../resources/characters/p3v1.png";
+    protected string $small_img = "../resources/characters/p3v2.png";
+
 
     // Constructor
     public function __construct(string $name, string $alias, string $race, int $level, int $exp, int $strength, int $dexterity, int $constitution, int $intelligence, 
@@ -88,8 +91,17 @@ class Hunter extends Character{
         return $this->items;
     }
 
+    public function getBigImage(): string {
+        return $this->big_img;
+    }
+
+    public function getSmallImage(): string {
+        return $this->small_img;
+    }
+
     // Methods
     public function attack(): int{
         return 5; //Joda
     }
+    
 }

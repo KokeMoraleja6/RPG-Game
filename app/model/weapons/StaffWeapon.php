@@ -1,9 +1,11 @@
 <?php
 
 require_once "Weapon.php";
+require_once "Wizard.php";
 
 class StaffWeapon extends Weapon {
 
+    // Constructor
     public function __construct(string $rarity) {
         switch ($rarity) {
             case "common":
@@ -17,6 +19,23 @@ class StaffWeapon extends Weapon {
                 break;
             default:
                 parent::__construct("Common Staff", 0, 0, 3, "common");
+                break;
+        }
+    }
+
+    // Methods
+    public function getImage(Wizard $wizard): string{
+        $weapon = $wizard->getWeapon();
+        $rarity = $weapon->rarity;
+        switch($rarity){
+            case "common":
+                return "../resources/weapons/staff1.png";
+                break;
+            case "rare":
+                return "../resources/weapons/staff2.png";
+                break;
+            case "legendary":
+                return "../resources/weapons/staff3.png";
                 break;
         }
     }
