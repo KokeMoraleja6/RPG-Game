@@ -1,5 +1,6 @@
 <?php
 require_once "model/user.php";
+require_once "model/character.php";
 
 class Db_controller
 {
@@ -61,6 +62,32 @@ class Db_controller
             }
         } catch (PDOException $e) {
             echo "Database error: " . $e->getMessage();
+            return false;
+        }
+    }
+
+    public static function create_character($name, $alias, $race, $type): bool
+    {
+        try {
+            $conn = new PDO(self::$dbdestination, self::$dbuser, self::$dbpassword);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->exec("USE " . self::$dbname);
+
+            //Preparo y lanzo la consulta
+            $stmt = $conn->prepare("INSERT INTO character (name, alias, race, type) VALUES (:name, :alias, :race, :type)");
+            $stmt->execute([
+                ':name' => $name,
+                ':alias' => $alias,
+                ':race' => $race,
+                ':type' => $type
+            ]);
+
+            //Me guardo en la sesion el usuario
+            $character = new $type($name, $alias, $race);
+            $_SESSION['character'] = $character;
+            return true;
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
             return false;
         }
     }
