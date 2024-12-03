@@ -28,6 +28,8 @@ abstract class Armor {
         return $this->rarity;
     }
 
+    // Methods
+    public abstract function getImage(): string;
     
 
 }

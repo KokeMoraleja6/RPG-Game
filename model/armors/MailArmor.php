@@ -23,18 +23,16 @@ class MailArmor extends Armor {
     }
 
     // Methods
-    public function getImage(Hunter $hunter): string{
-        $armor = $hunter->getArmor();
-        $rarity = $armor->rarity;
-        switch($rarity){
+    public function getImage(): string{
+        switch($this->rarity){
             case "common":
-                return "../resources/armors/a1.png";
+                return "../resources/armors/a1p3.png";
                 break;
             case "rare":
-                return "../resources/armors/a2.png";
+                return "../resources/armors/a2p3.png";
                 break;
             case "legendary":
-                return "../resources/armors/a3.png";
+                return "../resources/armors/a3p3.png";
                 break;
         }
     }

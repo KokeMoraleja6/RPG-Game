@@ -34,7 +34,7 @@
         $_SESSION['originMap'] = $originmap;
         $fogmap = Map_controller::generateFogMap();
         $_SESSION['fogMap'] = $fogmap;
-        $character = new Wizard("Kaki", "El Mago", "Humano", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  0, [], null, null, true);
+        $character = new Warrior("Kaki", "El Mago", "Humano");
         $_SESSION['character'] = $character;
     }
 
@@ -59,34 +59,34 @@
         <img src="../resources/parchment.jpeg" alt="parchment" />
         <div class="characterInfo">
             <div class="mainInfo">
-                <img src="<?=$character->getBigImage()?>" alt="character" />
+                <img src="<?= $character->getBigImage() ?>" alt="character" />
                 <div>
-                    <p>Lvl: <?=$character->getLevel()?> <br />
-                        Name: <?=$character->getName()?> <br />
-                        Alias: <?=$character->getAlias()?> <br />
-                        Exp <?=$character->getExp()?>/100 <br />
-                        Hp <?=$character->getHp()?>/<?=$character->getHpNow()?>
+                    <p>Lvl: <?= $character->getLevel() ?> <br />
+                        Name: <?= $character->getName() ?> <br />
+                        Alias: <?= $character->getAlias() ?> <br />
+                        Exp <?= $character->getExp() ?>/100 <br />
+                        Hp <?= $character->getHp() ?>/<?= $character->getHpNow() ?>
                     </p>
                 </div>
             </div>
             <div class="statsInfo">
                 <div class="stats">
-                    <p>Strength: <?=$character->getStrength()?></p>
-                    <p>Dexterity: <?=$character->getDexterity()?></p>
-                    <p>Constitution: <?=$character->getConstitution()?></p>
+                    <p>Strength: <?= $character->getStrength() ?></p>
+                    <p>Dexterity: <?= $character->getDexterity() ?></p>
+                    <p>Constitution: <?= $character->getConstitution() ?></p>
                 </div>
                 <div class="stats">
-                    <p>Intelligence: <?=$character->getIntelligence()?></p>
-                    <p>Wisdom: <?=$character->getWisdom()?></p>
-                    <p>Charisma: <?=$character->getCharisma()?></p>
+                    <p>Intelligence: <?= $character->getIntelligence() ?></p>
+                    <p>Wisdom: <?= $character->getWisdom() ?></p>
+                    <p>Charisma: <?= $character->getCharisma() ?></p>
                 </div>
             </div>
             <div class="weapons">
                 <div class="weapon">
-                    <img src="../resources/weapons/sword1.png" alt="sword">
+                    <img src="<?= $character->getWeapon()->getImage() ?>" alt="sword">
                 </div>
                 <div class="weapon">
-                    <img src="../resources/armors/a1.png" alt="sword">
+                    <img src="<?= $character->getArmor()->getImage() ?>" alt="armor">
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="parchment">
         <div class="logo">
             <h1 class="title">Mistbringer's</h1>

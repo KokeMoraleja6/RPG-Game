@@ -24,10 +24,8 @@ class BowWeapon extends Weapon {
     }
 
     // Methods
-    public function getImage(Hunter $hunter): string{
-        $weapon = $hunter->getWeapon();
-        $rarity = $weapon->rarity;
-        switch($rarity){
+    public function getImage(): string{
+        switch($this->rarity){
             case "common":
                 return "../resources/weapons/bow1.png";
                 break;

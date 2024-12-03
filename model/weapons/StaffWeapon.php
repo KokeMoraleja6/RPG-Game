@@ -24,10 +24,8 @@ class StaffWeapon extends Weapon {
     }
 
     // Methods
-    public function getImage(Wizard $wizard): string{
-        $weapon = $wizard->getWeapon();
-        $rarity = $weapon->rarity;
-        switch($rarity){
+    public function getImage(): string{
+        switch($this->rarity){
             case "common":
                 return "../resources/weapons/staff1.png";
                 break;

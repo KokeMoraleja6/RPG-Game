@@ -23,18 +23,16 @@ class LeatherArmor extends Armor {
     }
 
     // Methods
-    public function getImage(Wizard $wizard): string{
-        $armor = $wizard->getArmor();
-        $rarity = $armor->rarity;
-        switch($rarity){
+    public function getImage(): string{
+        switch($this->rarity){
             case "common":
-                return "../resources/armors/a1.png";
+                return "../resources/armors/a1p2.png";
                 break;
             case "rare":
-                return "../resources/armors/a2.png";
+                return "../resources/armors/a2p2.png";
                 break;
             case "legendary":
-                return "../resources/armors/a3.png";
+                return "../resources/armors/a3p2.png";
                 break;
         }
     }

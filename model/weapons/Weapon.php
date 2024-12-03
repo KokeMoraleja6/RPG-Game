@@ -39,4 +39,7 @@ abstract class Weapon {
     public function getName(): string {
         return $this->name;
     }
+
+    // Methods
+    public abstract function getImage(): string;
 }

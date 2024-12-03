@@ -23,10 +23,8 @@ class SwordWeapon extends Weapon {
     }
 
      // Methods
-     public function getImage(Warrior $warrior): string{
-        $weapon = $warrior->getWeapon();
-        $rarity = $weapon->rarity;
-        switch($rarity){
+     public function getImage(): string{
+        switch($this->rarity){
             case "common":
                 return "../resources/weapons/sword1.png";
                 break;

@@ -1,5 +1,5 @@
 <?php
-require_once "../model/Characters/Pruebas.php";
+require_once "../model/Characters/Character.php";
 class Map_controller
 {
     public static function generateMap($rows = 10, $cols = 13)

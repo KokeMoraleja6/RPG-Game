@@ -1,9 +1,10 @@
 <?php
 
-abstract class Character{
+abstract class Character
+{
 
     // Properties
-    protected string $name;  
+    protected string $name;
     protected string $alias;
     protected string $race;
     protected int $level;
@@ -21,8 +22,24 @@ abstract class Character{
     protected array $items;
 
     // Constructor
-    public function __construct(string $name, string $alias, string $race, int $level, int $exp, int $strength, int $dexterity, int $constitution, int $intelligence, 
-    int $wisdom, int $charisma, int $hp, int $hp_now, int $x,  int $y, array $items){
+    public function __construct(
+        string $name,
+        string $alias,
+        string $race,
+        int $level,
+        int $exp,
+        int $strength,
+        int $dexterity,
+        int $constitution,
+        int $intelligence,
+        int $wisdom,
+        int $charisma,
+        int $hp,
+        int $hp_now,
+        int $x,
+        int $y,
+        array $items
+    ) {
         $this->name = $name;
         $this->alias = $alias;
         $this->race = $race;
@@ -41,131 +58,150 @@ abstract class Character{
         $this->items = $items;
     }
 
-     // Getters
-     public function getName(): string {
+    // Getters
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function getAlias(): string {
+    public function getAlias(): string
+    {
         return $this->alias;
     }
 
-    public function getRace(): string {
+    public function getRace(): string
+    {
         return $this->race;
     }
 
-    public function getLevel(): int {
+    public function getLevel(): int
+    {
         return $this->level;
     }
 
-    public function getExp(): int {
+    public function getExp(): int
+    {
         return $this->exp;
     }
 
-    public function getStrength(): int {
+    public function getStrength(): int
+    {
         return $this->strength;
     }
 
-    public function getDexterity(): int {
+    public function getDexterity(): int
+    {
         return $this->dexterity;
     }
 
-    public function getConstitution(): int {
+    public function getConstitution(): int
+    {
         return $this->constitution;
     }
 
-    public function getIntelligence(): int {
+    public function getIntelligence(): int
+    {
         return $this->intelligence;
     }
 
-    public function getWisdom(): int {
+    public function getWisdom(): int
+    {
         return $this->wisdom;
     }
 
-    public function getCharisma(): int {
+    public function getCharisma(): int
+    {
         return $this->charisma;
     }
 
-    public function getHp(): int {
+    public function getHp(): int
+    {
         return $this->hp;
     }
 
-    public function getHpNow(): int {
+    public function getHpNow(): int
+    {
         return $this->hp_now;
     }
 
-    public function getX(): int {
+    public function getX(): int
+    {
         return $this->x;
     }
 
-    public function getY(): int {
+    public function getY(): int
+    {
         return $this->y;
     }
 
-    public function getItems(): array {
+    public function getItems(): array
+    {
         return $this->items;
     }
 
     // Methods 
-    abstract public function attack():int;
+    abstract public function attack(): int;
 
-    abstract public function getBigImage():string;
+    abstract public function getBigImage(): string;
 
-    abstract public function getSmallImage():string;
+    abstract public function getSmallImage(): string;
 
-    protected function throwDice(): int{
-        return rand(1,20);
+    abstract public function getArmor(): Armor;
+
+    abstract public function getWeapon(): Weapon;
+
+    public function throwDice(): int
+    {
+        return rand(1, 20);
     }
-     
-    public function move(string $direction):void { // Aquí en caso de escalar el mapa pasamos la altura y la anchura para comprobar los límites
-        switch ($direction){
+
+    public function move(string $direction): void
+    { // Aquí en caso de escalar el mapa pasamos la altura y la anchura para comprobar los límites
+        switch ($direction) {
             case "up":
-                if ($this->y > 0){
+                if ($this->y > 0) {
                     $this->y--;
                 }
                 break;
             case "down":
-                if ($this->y < 9){
+                if ($this->y < 9) {
                     $this->y++;
                 }
                 break;
             case "left":
-                if ($this->x > 0 ){
+                if ($this->x > 0) {
                     $this->x--;
                 }
                 break;
             case "right":
-                if($this->x < 12){
+                if ($this->x < 12) {
                     $this->x++;
                 }
         }
     }
 
-    protected function heal(int $index):void {
+    public function heal(int $index): void
+    {
         $item = $this->items[$index];
-            switch ($item){
-                case "Little potion":
-                    $this->hp_now += 3;
-                    break;
-                case "Medium potion":
-                    $this->hp_now += 5;
-                    break;
-                case "Great potion":
-                    $this->hp_now += 7;
-                    break;
-            
-            if ($this->hp_now > $this->hp){
-                $this->hp_now = $this->hp; // Limitamos la curación para que no abusen
-            }
+        switch ($item) {
+            case "Little potion":
+                $this->hp_now += 3;
+                break;
+            case "Medium potion":
+                $this->hp_now += 5;
+                break;
+            case "Great potion":
+                $this->hp_now += 7;
+                break;
+
+                if ($this->hp_now > $this->hp) {
+                    $this->hp_now = $this->hp; // Limitamos la curación para que no abusen
+                }
         }
         array_splice($this->items, $index, 1);
     }
 
-    protected function levelUp():void {
+    public function levelUp(): void {}
 
-    }
-
-    protected function addExperience(string $name): void {
-        
-    }
+    public function addExperience(string $name): void {}
 }
