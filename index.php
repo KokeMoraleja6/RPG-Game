@@ -6,9 +6,8 @@ require_once "model/user.php";
 session_start();
 
 
-
 if (isset($_SESSION['user'])) {
-   // require_once "views/game.php";
+    require_once "views/games.php";
 }else{
     require_once "views/login.html";
 }
@@ -37,5 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (Db_controller::create_user($first_name, $last_name, $email, $username, $password)) {
             header("Location: index.php");
         }
+    }
+
+    // Crear boton de Start Game
+    if (isset($_POST['new_game'])){
+        require_once "views/createGame.php";
+        //Formulario de personaje y guardarlo en session, crear tablero y guardar en sesion, crear partida y guardarla en sesion y por ultimo hacer inserts en bbdd
     }
 }

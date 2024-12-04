@@ -143,6 +143,24 @@
     color: #fff;
 }
 
+.class_char{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+select {
+    margin-top: 4%;
+    width: 178px;
+    padding: 2px;
+    box-sizing: border-box; 
+}
+
+.type_char img{
+    width: 35px;
+    height: 35px;
+}
+
 @keyframes typing {
     from {
         width: 0;
