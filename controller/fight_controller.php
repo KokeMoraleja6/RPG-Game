@@ -343,7 +343,6 @@ class Fight_controller
             if ($character->getHpNow() <= 0) {
                 $_SESSION['log'] = "You lose!!";
                 $_SESSION['won'] = 0;
-                //Vuelta a partidas
             }
         }
     }

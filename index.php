@@ -19,6 +19,9 @@ require_once "model/enemies/Dragon.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST['exit_game'])) { 
+        unset($_SESSION['character'], $_SESSION['fogMap'], $_SESSION['originMap']);
+    }
     if (isset($_POST['combat'])) { //Lleva a la vista combate
         $_SESSION['combat'] = true;
     }
@@ -29,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         //Si vengo de huir de una pelea o de salir no vuelvo a generar en esa casilla un encuentro
         $_SESSION['escape'] = $_POST['escape'];
         $_SESSION['combat'] = "";
-        if ($_SESSION['character']->getHpNow() == 0){//Si te derrotan borro sesiones y devuelvo a games.php
-            unset($_SESSION['character'],$_SESSION['fogMap'],$_SESSION['originMap']);
+        if ($_SESSION['character']->getHpNow() == 0) { //Si te derrotan borro sesiones y devuelvo a games.php
+            unset($_SESSION['character'], $_SESSION['fogMap'], $_SESSION['originMap']);
         }
     }
     //Si vengo de logarme
@@ -64,27 +67,27 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     //Si vengo de crear un personaje
-if (isset($_POST['name_cha'], $_POST['alias_cha'], $_POST['race_cha'], $_POST['class_cha'])) {
-    $char_name = $_POST['name_cha'];
-    $char_alias = $_POST['alias_cha'];
-    $char_race = $_POST['race_cha'];
-    $char_class = $_POST['class_cha'];
+    if (isset($_POST['name_cha'], $_POST['alias_cha'], $_POST['race_cha'], $_POST['class_cha'])) {
+        $char_name = $_POST['name_cha'];
+        $char_alias = $_POST['alias_cha'];
+        $char_race = $_POST['race_cha'];
+        $char_class = $_POST['class_cha'];
 
-    //Creamos el personaje en la base de datos y guardamos el id para crear la partida
-    $char_id = Db_controller::create_character($char_name, $char_alias, $char_race, $char_class);
+        //Creamos el personaje en la base de datos y guardamos el id para crear la partida
+        $char_id = Db_controller::create_character($char_name, $char_alias, $char_race, $char_class);
 
-    //Creamos el tablero en la base de datos y guardamos el id para crear la partida
-    $map = Map_controller::generateMap();
-    $fogMap = Map_controller::generateFogMap();
-    $board_id = Db_controller::create_board($fogMap, $map);
+        //Creamos el tablero en la base de datos y guardamos el id para crear la partida
+        $map = Map_controller::generateMap();
+        $fogMap = Map_controller::generateFogMap();
+        $board_id = Db_controller::create_board($fogMap, $map);
 
-    //Creamos la partida en la base de datos
-    $user_id = $_SESSION['user']->getUserId();
-    if (Db_controller::create_game($char_id, $board_id, $user_id)) {
-        $_SESSION['escape'] = true; //Para que el primer turno no haya combate
-        require_once "views/game.php";
+        //Creamos la partida en la base de datos
+        $user_id = $_SESSION['user']->getUserId();
+        if (Db_controller::create_game($char_id, $board_id, $user_id)) {
+            $_SESSION['escape'] = true; //Para que el primer turno no haya combate
+            require_once "views/game.php";
+        }
     }
-}
 }
 
 //Comprobamos si el usuario existe para saber dónde direccionarle
@@ -103,7 +106,7 @@ if (isset($_SESSION['user'])) {
             } else {
                 require_once "views/game.php";
             }
-        }else{
+        } else {
             require_once "views/game.php";
         }
     }

@@ -152,6 +152,7 @@
 
         <form action="#" method="post" class="save-button-container">
             <button type="submit" name="save_game" class="save-button">Save Game</button>
+            <button type="submit" name="exit_game" class="save-button">Exit Game</button>
         </form>
 
 

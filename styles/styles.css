@@ -719,7 +719,7 @@
 }
 
 .save-button {
-    margin-top: 50%;
+    margin-top: 20%;
     font-family: 'Press Start 2P', cursive;
     background-color: #5e341e;
     color: #d5c29f;
@@ -732,6 +732,11 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     text-align: center;
     transition: background-color 0.3s, transform 0.3s;
+}
+
+.save-button:hover {
+    background-color: #6e4228;
+    transform: scale(1.1);
 }
 
 /*fight.php*/
