@@ -44,6 +44,7 @@
     margin: 0;
     animation: fall-from-sky 1s ease-out forwards;
 }
+
 .subtitle-animated {
     font-family: "UnifrakturCook", cursive;
     text-shadow:
@@ -86,7 +87,9 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    color: white;
+    color: #d5c29f;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
     background: rgba(0, 0, 0, 0.6);
     margin: 3%;
     padding: 2%;
@@ -99,27 +102,33 @@
     margin-top: 4%;
 }
 
+.form-lo-re input {
+    background-color: #d5c29f;
+}
+
 .button-lo-re {
     font-family: 'Press Start 2P', cursive;
     text-decoration: none;
-    color: white;
-    background: linear-gradient(to bottom, #135aa2, #0a1970);
+    color: #d5c29f;
+    background: linear-gradient(to bottom, #5e341e, #3f2a1b);
     margin: 0 7%;
     padding: 5%;
-    border: none;
+    border: 2px solid #3f2a1b;
     border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 }
 
 .button-lo-re:hover {
+    background-color: #6e4228;
     transform: scale(1.05);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
 .button-lo-re:active {
+    background-color: #4c2c1a;
     transform: scale(0.95);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
@@ -128,35 +137,38 @@
     z-index: 1;
     margin-top: 1%;
     text-align: center;
-    color: white;
+    color: #d5c29f;
     font-family: 'Press Start 2P', cursive;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
 }
 
 .register-link a {
-    color: #0a1970;
+    color: #6e4228;
     text-decoration: none;
     font-weight: bold;
-    transition: color 0.2s;
+    transition: color 0.2s, text-shadow 0.2s;
 }
 
 .register-link a:hover {
-    color: #fff;
+    color: #d5c29f;
+    text-shadow: 0 0 10px #d5c29f;
 }
 
-.class_char{
+.class_char {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
-select {
+.form-lo-re select {
+    background-color: #d5c29f;
     margin-top: 4%;
     width: 178px;
     padding: 2px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
-.type_char img{
+.type_char img {
     width: 35px;
     height: 35px;
 }
@@ -179,9 +191,9 @@ select {
     animation: typing 3s steps(30, end) forwards;
 }
 
-/*games.php*/ 
+/*games.php*/
 
-.bodygames h1{
+.bodygames h1 {
     font-family: "UnifrakturCook", cursive;
     text-shadow:
         -4px -4px 0 rgba(0, 0, 0, 0.8), 4px -4px 0 rgba(0, 0, 0, 0.8), -4px 4px 0 rgba(0, 0, 0, 0.8), 4px 4px 0 rgba(0, 0, 0, 0.8), 9px 9px 0 rgba(0, 0, 0, 0.4);
@@ -196,11 +208,11 @@ select {
     animation: fall-from-sky 1s ease-out forwards;
 }
 
-.game-history{
+.game-history {
     z-index: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     align-items: center;
     text-align: center;
     color: white;
@@ -210,13 +222,13 @@ select {
     margin-top: 2%;
     padding: 1%;
     border-radius: 10px;
-    overflow-y: auto; 
+    overflow-y: auto;
     height: 70vh;
-    width: 60%; 
+    width: 60%;
     box-sizing: border-box;
 }
 
-.background-video-games{
+.background-video-games {
     position: absolute;
     top: 0;
     left: 0;
@@ -226,88 +238,7 @@ select {
     z-index: -1;
 }
 
-.game{
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(to bottom, #ffebc8, #f4bc88); 
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    width: 30%; 
-    height: auto;
-    padding: 1%;
-    padding-bottom: 2%;
-}
-
-.game img{
-    width: 5vh;
-    height: 5vh;
-    object-fit: contain;
-}
-
-.game-border{
-    background-color: #2f1713;
-    width: 40%;
-    padding: 1%;
-    display: flex;
-    align-items: center;
-    border-radius: 8px;
-}
-
-.games-buttons {
-    display: flex;
-    gap: 20%;
-}
-
-.games-buttons button {
-    padding: 5px 10px;
-    font-size: 12px;
-    background-color: #555;
-    border-radius: 5px;
-    font-family: 'Press Start 2P', cursive;
-    font-size: xx-small;
-    text-decoration: none;
-    color: white;
-    background: linear-gradient(to bottom, #135aa2, #0a1970);
-    padding: 10%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
-    margin-top: 2%;
-}
-
-.games-buttons button:hover {
-    background-color: #666;
-    transform: scale(1.05);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-}
-
-.game-number, .game-name, .game-alias, .game-level, .game-class {
-   font-family: "UnifrakturCook", cursive;
-}
-
-.game-name, .game-alias, .game-level, .game-class{
-    background-color: #2f1713;
-    text-shadow:
-    -4px -4px 0 rgba(0, 0, 0, 0.8);
-    padding: 1%;
-    border-radius: 5px;
-}
-
-.game-history h1{
-    font-family: "UnifrakturCook", cursive;
-    text-shadow:
-        -4px -4px 0 rgba(0, 0, 0, 0.8), 4px -4px 0 rgba(0, 0, 0, 0.8), -4px 4px 0 rgba(0, 0, 0, 0.8), 4px 4px 0 rgba(0, 0, 0, 0.8), 9px 9px 0 rgba(0, 0, 0, 0.4);
-    color: white;
-    font-size: 350%;
-    display: flex;
-}
-
-.game-history h2{
+.game-history h2 {
     font-family: "UnifrakturCook", cursive;
     text-shadow:
         -4px -4px 0 rgba(0, 0, 0, 0.8), 4px -4px 0 rgba(0, 0, 0, 0.8), -4px 4px 0 rgba(0, 0, 0, 0.8), 4px 4px 0 rgba(0, 0, 0, 0.8), 9px 9px 0 rgba(0, 0, 0, 0.4);
@@ -315,51 +246,124 @@ select {
     font-size: 300%;
 }
 
+.game-border {
+    background-color: rgba(0, 0, 0, 0.8);
+    width: 40%;
+    padding: 1%;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    border: 2px solid #3f2a1b;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.game {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(to bottom, #5e341e, #3f2a1b);
+    border-radius: 10px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: auto;
+    padding: 2%;
+    box-sizing: border-box;
+}
+
+.game img {
+    width: 8vh;
+    height: auto;
+    object-fit: contain;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border: 2px solid #d5c29f;
+}
+
+.game-data {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #3f2a1b;
+    color: #d5c29f;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    padding: 0.5%;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.games-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.games-buttons button {
+    padding: 5px 10px;
+    font-size: 0.8em;
+    font-family: 'Press Start 2P', cursive;
+    color: #d5c29f;
+    background: linear-gradient(to bottom, #5e341e, #3f2a1b);
+    border: 2px solid #3f2a1b;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+}
+
+.games-buttons button:hover {
+    background-color: #6e4228;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8);
+}
+
+::-webkit-scrollbar {
+    /*Para el scroll de games.php*/
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    /* Fondo de la barra */
+    background: #222;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    /* Thumb (la parte que se mueve) */
+    background: linear-gradient(to bottom, #1d1d1d, #888);
+    border-radius: 5px;
+}
+
 .create-game {
     font-family: 'Press Start 2P', cursive;
     text-decoration: none;
-    color: white;
-    background: linear-gradient(to bottom, #135aa2, #0a1970);
+    color: #d5c29f;
+    background: linear-gradient(to bottom, #5e341e, #3f2a1b);
     padding: 2%;
-    border: none;
+    border: 2px solid #3f2a1b;
     border-radius: 10px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
     width: 30%;
     height: 10%;
     margin-left: 35%;
-    margin-top: 2%;
+    margin-top: 1%;
 }
 
-.create-game:hover{
+.create-game:hover {
+    background-color: #6e4228;
     transform: scale(1.05);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
 
-.create-game:active{
+.create-game:active {
+    background-color: #4c2c1a;
     transform: scale(0.95);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-
-/*Para el scroll de games.php*/ 
-::-webkit-scrollbar {
-    width: 10px; 
-    height: 10px; 
-}
-
-/* Fondo de la barra */
-::-webkit-scrollbar-track {
-    background: #222;
-    border-radius: 5px;
-}
-
-/* Thumb (la parte que se mueve) */
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #1d1d1d, #888); 
-    border-radius: 5px;
 }
 
 /*game.php*/
@@ -595,7 +599,7 @@ select {
 }
 
 .direction-buttons {
-margin-top: 20%;
+    margin-top: 20%;
     display: grid;
     grid-template-columns: 50px 50px 50px;
     grid-template-rows: 50px 50px 50px;
@@ -607,27 +611,27 @@ margin-top: 20%;
 .direction-buttons button {
     width: 50px;
     height: 50px;
-    background-color: #5e341e; /* Mismo color de fondo que el botón de combate */
-    border: 3px solid #3f2a1b; /* Borde oscuro similar */
-    color: #d5c29f; /* Texto con tono crema */
+    background-color: #5e341e;
+    border: 3px solid #3f2a1b;
+    color: #d5c29f;
     cursor: pointer;
     text-align: center;
     font-family: 'Press Start 2P', cursive;
-    font-size: 100%; /* Tamaño adecuado para el texto */
+    font-size: 100%;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Efecto de sombra */
-    transition: background-color 0.3s, transform 0.3s; /* Transiciones suaves */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    transition: background-color 0.3s, transform 0.3s;
     box-sizing: border-box;
 }
 
 .direction-buttons button:hover {
-    background-color: #6e4228; /* Un tono más claro para el hover */
-    transform: scale(1.1); /* Efecto de agrandamiento al pasar el mouse */
+    background-color: #6e4228;
+    transform: scale(1.1);
 }
 
 .direction-buttons button:active {
-    background-color: #4c2c1a; /* Un tono más oscuro para el clic */
-    transform: scale(0.95); /* Efecto de compresión al hacer clic */
+    background-color: #4c2c1a;
+    transform: scale(0.95);
 }
 
 
@@ -650,6 +654,7 @@ margin-top: 20%;
     grid-row: 2;
     grid-column: 2;
 }
+
 .potion-container {
     display: flex;
     flex-direction: column;
@@ -660,23 +665,23 @@ margin-top: 20%;
 
 .potion-select {
     font-family: 'Press Start 2P', cursive;
-    background-color: #d5c29f; 
-    color: #3f2a1b; 
+    background-color: #d5c29f;
+    color: #3f2a1b;
     border: 3px solid #5e341e;
     border-radius: 10px;
     padding: 10px;
     font-size: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     width: 100%;
-    margin: 0; 
+    margin: 0;
     box-sizing: border-box;
     text-align: center;
 }
 
 .potion-button {
     font-family: 'Press Start 2P', cursive;
-    background-color: #5e341e; 
-    color: #d5c29f; 
+    background-color: #5e341e;
+    color: #d5c29f;
     border: 3px solid #3f2a1b;
     border-radius: 10px;
     padding: 3%;
@@ -684,44 +689,46 @@ margin-top: 20%;
     cursor: pointer;
     width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
-    margin: 0; 
+    margin: 0;
     transition: background-color 0.3s, transform 0.3s;
     box-sizing: border-box;
     text-align: center;
 }
 
 .potion-button:hover:not(:disabled) {
-    background-color: #6e4228; 
-    transform: scale(1.1); 
+    background-color: #6e4228;
+    transform: scale(1.1);
 }
 
 .potion-button:active:not(:disabled) {
-    background-color: #4c2c1a; 
-    transform: scale(0.95); 
+    background-color: #4c2c1a;
+    transform: scale(0.95);
 }
 
 .potion-button:disabled {
-    background-color: #a89981; 
-    color: #6d5c4a; 
+    background-color: #a89981;
+    color: #6d5c4a;
     cursor: not-allowed;
 }
+
 .save-button-container {
-    width: 100%; /* Coincide con el ancho de los botones de combate */
-    max-width: 300px; /* Ajusta al mismo ancho del contenedor */
-    margin: 0 auto 10px auto; /* Centrado horizontalmente y espaciado inferior */
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 10px auto;
     box-sizing: border-box;
 }
+
 .save-button {
     margin-top: 50%;
     font-family: 'Press Start 2P', cursive;
-    background-color: #5e341e; 
+    background-color: #5e341e;
     color: #d5c29f;
     border: 3px solid #3f2a1b;
     border-radius: 10px;
     padding: 10px;
     font-size: 100%;
     cursor: pointer;
-    width: 100%; 
+    width: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     text-align: center;
     transition: background-color 0.3s, transform 0.3s;
@@ -736,7 +743,7 @@ margin-top: 20%;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden; 
+    overflow: hidden;
     background-image: url('../resources/table.jpeg');
     font-family: 'Press Start 2P', sans-serif;
 }
@@ -744,34 +751,36 @@ margin-top: 20%;
 .battlefield {
     display: flex;
     justify-content: center;
-    height: 70vh; 
-    width:100%;
+    height: 70vh;
+    width: 100%;
     position: relative;
-    overflow: hidden; 
+    overflow: hidden;
 }
 
-.enemyfight, .characterfight {
-    position: absolute; 
-    bottom: 0; 
-    width: 50%; 
-    height: 50%; 
-    text-align: center; 
-    z-index: 1; 
+.enemyfight,
+.characterfight {
+    position: absolute;
+    bottom: 0;
+    width: 50%;
+    height: 50%;
+    text-align: center;
+    z-index: 1;
 }
 
 .enemyfight {
-    left: 0; 
+    left: 0;
     height: 50%;
 }
 
 .characterfight {
-    right: 0; 
+    right: 0;
     height: 50%;
 }
 
-.enemyfight img, .characterfight img {
-    height: 70%; 
-    width: auto; 
+.enemyfight img,
+.characterfight img {
+    height: 70%;
+    width: auto;
     object-fit: contain;
 }
 
@@ -779,29 +788,29 @@ margin-top: 20%;
     margin-top: 30%;
     display: flex;
     justify-content: space-between;
-    width: 100%; /* Coincidirá con el ancho del .potion-select */
-    max-width: 300px; /* Ajusta al mismo ancho del select */
-    margin-bottom: 10px; /* Espaciado respecto a la sección de pociones */
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
     box-sizing: border-box;
 }
 
 .combat-button {
     font-family: 'Press Start 2P', cursive;
-    background-color: #5e341e; /* Mismo estilo que los botones de poción */
+    background-color: #5e341e;
     color: #d5c29f;
     border: 3px solid #3f2a1b;
     border-radius: 10px;
     padding: 10px;
     font-size: 100%;
     cursor: pointer;
-    width: 48%; /* Ocupa la mitad del espacio, con un pequeño margen */
+    width: 48%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
     text-align: center;
     transition: background-color 0.3s, transform 0.3s;
 }
 
 .combat-button:hover:not(:disabled) {
-    background-color: #6e4228; /* Tono más claro */
+    background-color: #6e4228;
     transform: scale(1.05);
 }
 
