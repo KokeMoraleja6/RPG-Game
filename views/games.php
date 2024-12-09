@@ -58,14 +58,14 @@
                 $game = new Game($game['id_game'], $game['id_board'], $game['id_character'], $game['start_date'], $game['save_date']);
                 $character = Db_controller::get_character($game->getCharacterId());
             ?>
-                <h2 class="game-number">Game <?= $contador ?></h2>
+                <h2 >Game <?= $contador ?></h2>
                 <div class="game-border">
                     <div class="game">
                         <img src="<?= $character->getBigImage() ?>" alt="character">
-                        <p class="game-name">Name: <?= $character->getName() ?></p>
-                        <p class="game-alias">Alias: <?= $character->getAlias() ?></p>
-                        <p class="game-level">Lvl: <?= $character->getLevel() ?></p>
-                        <p class="game-class">Class: <?= get_class($character) ?></p>
+                        <p class="game-data">Name: <?= $character->getName() ?></p>
+                        <p class="game-data">Alias: <?= $character->getAlias() ?></p>
+                        <p class="game-data">Lvl: <?= $character->getLevel() ?></p>
+                        <p class="game-data">Class: <?= get_class($character) ?></p>
                         <div class="games-buttons">
                             <button type="submit" name='play-game-<?= $game->getGameId() ?>'>Play Game</button>
                             <button type="submit" name='delete-game-<?= $game->getGameId() ?>'>Delete Game</button>
@@ -78,11 +78,6 @@
             ?>
         </div>
         <button type="submit" name="create-game" class="create-game">Create New Game</button>
-        <?php
-        if (isset($_POST['create-char'])) {
-            header("Location: index.php");
-        }
-        ?>
     </form>
 
 </body>
