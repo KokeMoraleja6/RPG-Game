@@ -5,13 +5,13 @@ class Map_controller
     public static function generateMap($rows = 10, $cols = 13)
     {
         // Inicializa el mapa vacio
-        $map = array_fill(0, $rows, array_fill(0, $cols, 'w')); //Lleno de bosque
-        $biomes = ['w1', 'w2', 'w3', 'r1', 'r2', 'r3', 'm1', 'm2', 'm3']; //bosque rio montaña
+        $map = array_fill(0, $rows, array_fill(0, $cols, 'w1')); //Lleno de bosque
+        $biomes = ['w1', 'w2', 'w3', 'r1', 'r2', 'r3', 'm1', 'm2', 'm3', 'de1', 'de2']; //bosque rio montaña desierto
 
         //Creo biomas aleatorios
         for ($i = 0; $i < $rows; $i++) {
             for ($j = 0; $j < $cols; $j++) {
-                $map[$i][$j] = $biomes[mt_rand(0, 8)];
+                $map[$i][$j] = $biomes[mt_rand(0, 10)];
             }
         }
 
@@ -32,6 +32,7 @@ class Map_controller
         $_SESSION['originMap'] = $map;
         return $map;
     }
+    
     public static function generateFogMap($rows = 10, $cols = 13)
     {
         // Inicializa el mapa vacio
@@ -66,13 +67,13 @@ class Map_controller
                 echo "<td>";
                 echo "<div class='cell-content'>";
                 switch ($fogmap[$i][$j]) {
-                    case 'f': //nube random smula movimiento
+                    case 'f': ///////////////////////////////////////////////////////////////////////////////nube random simula movimiento
                         echo "<img src='resources/biomes/f" . mt_rand(1, 6) . ".png' alt='river' />";
                         break;
-                    case 'F': //nube oscura de la zona castillo
+                    case 'F': ///////////////////////////////////////////////////////////////////////////////nube oscura de la zona castillo
                         echo "<img src='resources/biomes/f" . mt_rand(7, 9) . ".png' alt='river' />";
                         break;
-                    case 'w1': //Bosque
+                    case 'w1': ///////////////////////////////////////////////////////////////////////////////Bosque
                         echo "<img src='resources/biomes/w1.png' alt='forest' class='biome' />";
                         break;
                     case 'w2':
@@ -81,7 +82,7 @@ class Map_controller
                     case 'w3':
                         echo "<img src='resources/biomes/w3.png' alt='forest' class='biome' />";
                         break;
-                    case 'm1': //Montaña
+                    case 'm1': ///////////////////////////////////////////////////////////////////////////////Montaña
                         echo "<img src='resources/biomes/m1.png' alt='mountain' class='biome' />";
                         break;
                     case 'm2':
@@ -90,7 +91,7 @@ class Map_controller
                     case 'm3':
                         echo "<img src='resources/biomes/m3.png' alt='mountain' class='biome' />";
                         break;
-                    case 'r1': //Rio
+                    case 'r1': ///////////////////////////////////////////////////////////////////////////////Rio
                         echo "<img src='resources/biomes/r1.png' alt='river' class='biome' />";
                         break;
                     case 'r2':
@@ -99,13 +100,19 @@ class Map_controller
                     case 'r3':
                         echo "<img src='resources/biomes/r3.png' alt='river' class='biome' />";
                         break;
-                    case 'D': //Castillo
+                    case 'de1': ///////////////////////////////////////////////////////////////////////////////Desierto 2.1
+                        echo "<img src='resources/biomes/de1.png' alt='desert' class='biome' />";
+                        break;
+                    case 'de2':
+                        echo "<img src='resources/biomes/de2.png' alt='desert' class='biome' />";
+                        break;
+                    case 'D': ///////////////////////////////////////////////////////////////////////////////Castillo
                         echo "<img src='resources/biomes/d1.png' alt='castle' class='biome' />";
                         break;
-                    case 'C': //Cueva
+                    case 'C': ///////////////////////////////////////////////////////////////////////////////Cueva
                         echo "<img src='resources/biomes/c1.png' alt='cave' class='biome' />";
                         break;
-                    case 'V': //Pueblo
+                    case 'V': ///////////////////////////////////////////////////////////////////////////////Pueblo
                         echo "<img src='resources/biomes/v1.png' alt='villa' class='biome' />";
                         break;
                 }
@@ -128,7 +135,7 @@ class Map_controller
         $character = $_SESSION['character'];
         $log = "";
         switch ($fogmap[$character->getY()][$character->getX()]) {
-            case 'w1':
+            case 'w1': ///////////////////////////////////////////////////////////////////////////////Bosque
             case 'w2':
             case 'w3':
                 if (rand(1, 100) <= 40 && !$_SESSION['escape']) { //Si vengo de un combate no lo vuelvo a generar
@@ -142,10 +149,8 @@ class Map_controller
                     $_SESSION['buttonYes'] = false;
                     $_SESSION['dungeon'] = false;
                 }
-
                 break;
-
-            case 'm1':
+            case 'm1': ///////////////////////////////////////////////////////////////////////////////Montaña
             case 'm2':
             case 'm3':
                 if (rand(1, 100) <= 60 && !$_SESSION['escape']) { //Si vengo de un combate no lo vuelvo a generar
@@ -159,10 +164,8 @@ class Map_controller
                     $_SESSION['buttonYes'] = false;
                     $_SESSION['dungeon'] = false;
                 }
-
                 break;
-
-            case 'r1':
+            case 'r1': ///////////////////////////////////////////////////////////////////////////////Rio
             case 'r2':
             case 'r3':
                 if (rand(1, 100) <= 20 && !$_SESSION['escape']) { //Si vengo de un combate no lo vuelvo a generar
@@ -176,9 +179,22 @@ class Map_controller
                     $_SESSION['buttonYes'] = false;
                     $_SESSION['dungeon'] = false;
                 }
-
                 break;
-            case 'V': //Posibilidad de pelea con Fran en taberna
+            case 'de1': ///////////////////////////////////////////////////////////////////////////////Desierto 2.1
+            case 'de2':
+                if (rand(1, 100) <= 50 && !$_SESSION['escape']) {
+                    $log = "The wind howls across <br/>the barren dunes... <br/> sandstorm is approaching!";
+                    $_SESSION['encounter'] = true;
+                    $_SESSION['buttonYes'] = false;
+                    $_SESSION['dungeon'] = false;
+                } else {
+                    $log = "The sun beats down <br/>relentlessly... the dry <br/>air seems endless.";
+                    $_SESSION['encounter'] = false;
+                    $_SESSION['buttonYes'] = false;
+                    $_SESSION['dungeon'] = false;
+                }
+                break;
+            case 'V': ///////////////////////////////////////////////////////////////////////////////Posibilidad de pelea con Fran en taberna
                 if (rand(1, 100) <= 20 && !$_SESSION['escape']) { //Si vengo de un combate no lo vuelvo a generar
                     $log = "The river ripples...<br/>  danger lurks beneath the <br/>surface!";
                     $_SESSION['encounter'] = true;
@@ -189,28 +205,25 @@ class Map_controller
                     $_SESSION['encounter'] = false;
                     $_SESSION['dungeon'] = false;
                 }
-
                 break;
-            case 'C':
+            case 'C': ///////////////////////////////////////////////////////////////////////////////Cueva
                 $log = "You hear the echoes of<br/> thunderous roars from <br/>deep within the cave.<br/> Do you dare to enter?";
                 $_SESSION['dungeon'] = true;
                 $_SESSION['encounter'] = false;
                 break;
-
-            case 'D':
+            case 'D': ///////////////////////////////////////////////////////////////////////////////Dungeon
                 $log = "Before you stands a <br/>towering castle. Do you <br/>dare to step inside?";
                 $_SESSION['dungeon'] = true;
                 $_SESSION['encounter'] = false;
                 break;
-
-            default:
+            default: ///////////////////////////////////////////////////////////////////////////////No e deberia llegar a ver nunca
                 $log = "You wander into uncharted <br/> territory. Nothing happens... <br/>yet.";
                 break;
         }
         return $log;
     }
 
-    public static function heal(): void//Recuperar salud en pueblo
+    public static function heal(): void //Recuperar salud en pueblo
     {
         $character = $_SESSION['character'];
         $character->setHpNow($character->getHp());
@@ -219,10 +232,11 @@ class Map_controller
     public static function potionHeal(int $indexPotion): void
     {
         $character = $_SESSION['character'];
-        $character->heal($indexPotion );
+        $character->heal($indexPotion);
     }
 
-    public static function gamebuttons(){
+    public static function gamebuttons()
+    {
         $character = $_SESSION['character'];
         if ($_SERVER["REQUEST_METHOD"] === "POST") { //Habra que manejarlos en index
             if (isset($_POST['up'])) {

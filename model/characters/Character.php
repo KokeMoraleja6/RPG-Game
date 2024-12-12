@@ -150,7 +150,7 @@ abstract class Character
     {
         $this->items[] = $potion;
     }
-    public function setHp(string $hp): void//Para añadir el bonus de armor
+    public function setHp(int $hp): void//Para añadir el bonus de armor
     {
         $this->hp = $hp;
     }

@@ -9,6 +9,7 @@ require_once "model/enemies/Wolf.php";
 require_once "model/enemies/Boss.php";
 require_once "model/enemies/Skeleton.php";
 require_once "model/enemies/Dragon.php";
+require_once "model/enemies/Thief.php";
 class Fight_controller
 {
 
@@ -16,6 +17,13 @@ class Fight_controller
     {
         $fogmap = $_SESSION['fogMap'];
         $character = $_SESSION['character'];
+
+        if (isset($_SESSION['won'])) {
+            $won = $_SESSION['won'];
+        } else {
+            $won = 0;
+        }
+
         switch ($fogmap[$character->getY()][$character->getX()]) {
             case 'w1': ///////////////////////////////////////////////////////////////////////////////Dibujo la pela en el bosque
             case 'w2':
@@ -23,233 +31,128 @@ class Fight_controller
                 echo "<img src='resources/biomes/scenew.jpg' alt='scene' />";
                 echo "    <div class='combat'>";
                 echo "        <div class='enemyfight'>";
-                if (!isset($_SESSION['won'])) { //Si la partida no ha acabado
-                    if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
-                        $enemy = new Wolf();
-                        $_SESSION['log'] = "A feral howl echoes <br/>through the forest. <br/>A wolf leaps into view!";
-                    } else { //Si no lo pillo de la sesion
-                        $enemy = $_SESSION['enemy'];
+                if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
+                    $enemy = new Wolf();
+                    $_SESSION['log'] = "A feral howl echoes <br/>through the forest. <br/>A wolf leaps into view!";
+                } else { //Si no lo pillo de la sesion
+                    $enemy = $_SESSION['enemy'];
+                    if ($enemy->getHpNow() > 0) { //Si no esta muerto
                         $_SESSION['log'] = "The wolf attacked!";
                     }
-                    echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                    echo "        </div>";
-                } else {
-                    switch ($_SESSION['won']) { //En caso de haber ganado pinto los cofres si los hay
-                        case '1':
-                            echo "            <img src='resources/smallchest1.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '2':
-                            echo "            <img src='resources/smallchest2.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '3':
-                            echo "            <img src='resources/smallchest3.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        default:
-                            $enemy = $_SESSION['enemy'];
-                            echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                            echo "        </div>";
-                            break;
-                    }
-                    unset($_SESSION['won']);
                 }
                 break;
-
             case 'm1': ///////////////////////////////////////////////////////////////////////////////Dibujo la pela en la montaña
             case 'm2':
             case 'm3':
                 echo "<img src='resources/biomes/scenem.jpg' alt='scene' />";
                 echo "    <div class='combat'>";
                 echo "        <div class='enemyfight'>";
-                if (!isset($_SESSION['won'])) { //Si la partida no ha acabado
-                    if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
-                        $enemy = new Orc();
-                        $_SESSION['log'] = "An orc roars fiercely,<br/> its battle cry echoing <br/>through the mountains.";
-                    } else { //Si no lo pillo de la sesion
-                        $enemy = $_SESSION['enemy'];
+                if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
+                    $enemy = new Orc();
+                    $_SESSION['log'] = "An orc roars fiercely,<br/> its battle cry echoing <br/>through the mountains.";
+                } else { //Si no lo pillo de la sesion
+                    $enemy = $_SESSION['enemy'];
+                    if ($enemy->getHpNow() > 0) { //Si no esta muerto
                         $_SESSION['log'] = "The orc attacked!";
                     }
-                    echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                    echo "        </div>";
-                } else {
-                    switch ($_SESSION['won']) { //En caso de haber ganado pinto los cofres si los hay
-                        case '1':
-                            echo "            <img src='resources/smallchest1.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '2':
-                            echo "            <img src='resources/smallchest2.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '3':
-                            echo "            <img src='resources/smallchest3.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        default:
-                            $enemy = $_SESSION['enemy'];
-                            echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                            echo "        </div>";
-                            break;
-                    }
-                    unset($_SESSION['won']);
                 }
                 break;
-
             case 'r1': ///////////////////////////////////////////////////////////////////////////////Dibujo la pela en el rio
             case 'r2':
             case 'r3':
                 echo "<img src='resources/biomes/scener.jpg' alt='scene' />";
                 echo "    <div class='combat'>";
                 echo "        <div class='enemyfight'>";
-                if (!isset($_SESSION['won'])) { //Si la partida no ha acabado
-                    if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
-                        $enemy = new Goblin();
-                        $_SESSION['log'] = "A goblin scurries out<br/> from behind the rocks,<br/> cackling with glee.";
-                    } else { //Si no lo pillo de la sesion
-                        $enemy = $_SESSION['enemy'];
+                if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
+                    $enemy = new Goblin();
+                    $_SESSION['log'] = "A goblin scurries out<br/> from behind the rocks,<br/> cackling with glee.";
+                } else { //Si no lo pillo de la sesion
+                    $enemy = $_SESSION['enemy'];
+                    if ($enemy->getHpNow() > 0) { //Si no esta muerto
                         $_SESSION['log'] = "The goblin attacked!";
                     }
-                    echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                    echo "        </div>";
-                } else {
-                    switch ($_SESSION['won']) { //En caso de haber ganado pinto los cofres si los hay
-                        case '1':
-                            echo "            <img src='resources/smallchest1.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '2':
-                            echo "            <img src='resources/smallchest2.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '3':
-                            echo "            <img src='resources/smallchest3.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        default:
-                            $enemy = $_SESSION['enemy'];
-                            echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                            echo "        </div>";
-                            break;
+                }
+                break;
+            case 'de1': ///////////////////////////////////////////////////////////////////////////////Dibujo la pela en el desierto
+            case 'de2':
+                echo "<img src='resources/biomes/scenede.jpg' alt='scene' />";
+                echo "    <div class='combat'>";
+                echo "        <div class='enemyfight'>";
+                if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
+                    $enemy = new Thief();
+                    $_SESSION['log'] = "A man approaches <br/> with a sour face.<br/> \"Do you have a penny <br/> for tobacco?\"";
+                } else { //Si no lo pillo de la sesion
+                    $enemy = $_SESSION['enemy'];
+                    if ($enemy->getHpNow() > 0) { //Si no esta muerto
+                        $_SESSION['log'] = "The desert thief attacked!";
                     }
-                    unset($_SESSION['won']);
                 }
                 break;
             case 'C': ///////////////////////////////////////////////////////////////////////////////Dibujo la pela en la cueva
                 echo "<img src='resources/biomes/sceneC.jpg' alt='scene' />";
                 echo "    <div class='combat'>";
                 echo "        <div class='enemyfight'>";
-                if (!isset($_SESSION['won'])) { //Si la partida no ha acabado
-                    if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
-                        $enemy = new Dragon(); //Si no lo pillo de la sesion
-                        $_SESSION['log'] = "From the shadows, a <br/>fearsome roar shakes <br/>the ground—Drakon,<br/> the Eternal Flame, <br/>descends upon you!";
-                    } else {
-                        $enemy = $_SESSION['enemy'];
+                if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
+                    $enemy = new Dragon(); //Si no lo pillo de la sesion
+                    $_SESSION['log'] = "From the shadows, a <br/>fearsome roar shakes <br/>the ground—Drakon,<br/> the Eternal Flame, <br/>descends upon you!";
+                } else {
+                    $enemy = $_SESSION['enemy'];
+                    if ($enemy->getHpNow() > 0) { //Si no esta muerto
                         $_SESSION['log'] = "The Drakon attacked!";
                     }
-                    echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                    echo "        </div>";
-                } else {
-                    switch ($_SESSION['won']) { //En caso de haber ganado pinto los cofres si los hay
-                        case '1':
-                            echo "            <img src='resources/smallchest1.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '2':
-                            echo "            <img src='resources/smallchest2.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '3':
-                            echo "            <img src='resources/smallchest3.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        default:
-                            $enemy = $_SESSION['enemy'];
-                            echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                            echo "        </div>";
-                            break;
-                    }
-                    unset($_SESSION['won']);
                 }
                 break;
             case 'D': ///////////////////////////////////////////////////////////////////////////////Dibujo la pela en el castillo
                 echo "<img src='resources/biomes/sceneD.jpg' alt='scene' />";
                 echo "    <div class='combat'>";
                 echo "        <div class='enemyfight'>";
-                if (!isset($_SESSION['won'])) { //Si la partida no ha acabado
-                    if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
-                        $enemy = new Boss();
-                        $enemy->updateStats();
-                        $_SESSION['log'] = $enemy->getName() . " appears!";
-                    } else { //Si no lo pillo de la sesion
-                        $enemy = $_SESSION['enemy'];
-                        $enemy->updateStats(); //Actualzo sus datos el boss escada vez mas fuerte
+                if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
+                    $enemy = new Boss();
+                    $enemy->updateStats();
+                    $_SESSION['log'] = $enemy->getName() . " appears!";
+                } else { //Si no lo pillo de la sesion
+                    $enemy = $_SESSION['enemy'];
+                    if ($enemy->getHpNow() > 0) { //Si no esta muerto
+                        $enemy->updateStats(); //Actualizo sus datos el boss es cada vez mas fuerte
                         $_SESSION['log'] = $enemy->getName() . "<br/>appears!";
                     }
-
-                    echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                    echo "        </div>";
-                } else {
-                    switch ($_SESSION['won']) { //En caso de haber ganado pinto los cofres si los hay
-                        case '1':
-                            echo "            <img src='resources/smallchest1.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '2':
-                            echo "            <img src='resources/smallchest2.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '3':
-                            echo "            <img src='resources/smallchest3.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        default:
-                            $enemy = $_SESSION['enemy'];
-                            echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                            echo "        </div>";
-                            break;
-                    }
-                    unset($_SESSION['won']);
                 }
                 break;
             case 'V': ///////////////////////////////////////////////////////////////////////////////Dibujo la pela en la taberna
                 echo "<img src='resources/biomes/sceneV.jpg' alt='scene' />";
                 echo "    <div class='combat'>";
                 echo "        <div class='enemyfight'>";
-                if (!isset($_SESSION['won'])) { //Si la partida no ha acabado
-                    if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
-                        $enemy = new Fran();
-                        $_SESSION['log'] = "A drunk guy approaches<br/>you dangerously.<br/>In the mood to party... <br/> Oh God, It's him!<br/>The well known <br/>Drunk Guy Fran. <br/> \"Invite me the last one.\" <br/>";
-                    } else { //Si no lo pillo de la sesion
-                        $enemy = $_SESSION['enemy'];
+                if (!isset($_SESSION['enemy'])) { //Creo al enemigo si no existe
+                    $enemy = new Fran();
+                    $_SESSION['log'] = "A drunk guy approaches<br/>you dangerously.<br/>In the mood to party... <br/> Oh God, It's him!<br/>The well known <br/>Drunk Guy Fran. <br/> \"Invite me the last one.\" <br/>";
+                } else { //Si no lo pillo de la sesion
+                    $enemy = $_SESSION['enemy'];
+                    if ($enemy->getHpNow() > 0) { //Si no esta muerto
                         $_SESSION['log'] = "Drunk Guy Fran attacked!";
                     }
-
-                    echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                    echo "        </div>";
-                } else {
-                    switch ($_SESSION['won']) { //En caso de haber ganado pinto los cofres si los hay
-                        case '1':
-                            echo "            <img src='resources/smallchest1.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '2':
-                            echo "            <img src='resources/smallchest2.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        case '3':
-                            echo "            <img src='resources/smallchest3.png' alt='chest' />";
-                            echo "        </div>";
-                            break;
-                        default:
-                            $enemy = $_SESSION['enemy'];
-                            echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
-                            echo "        </div>";
-                            break;
-                    }
-                    unset($_SESSION['won']);
                 }
+                break;
+        }
+
+        switch ($won) { //En caso de haber ganado pinto los cofres si los hay
+            case '1':
+                echo "            <img src='resources/smallchest1.png' alt='chest' />";
+                echo "        </div>";
+                unset($_SESSION['won']);
+                break;
+            case '2':
+                echo "            <img src='resources/smallchest2.png' alt='chest' />";
+                echo "        </div>";
+                unset($_SESSION['won']);
+                break;
+            case '3':
+                echo "            <img src='resources/smallchest3.png' alt='chest' />";
+                echo "        </div>";
+                unset($_SESSION['won']);
+                break;
+            default:
+                echo "            <img src=" . $enemy->getImage() . " alt='enemy' />";
+                echo "        </div>";
                 break;
         }
 
@@ -257,19 +160,22 @@ class Fight_controller
         echo "            <img src='" . $character->getBigImage() . "' alt='character' />";
         echo "        </div>";
         echo "    </div>";
-        if (isset($enemy)) {
-            $_SESSION['enemy'] = $enemy;
+
+        //Has perdido
+        if ($character->getHpNow() <= 0) {
+            $_SESSION['log'] = "You lose!!";
         }
+        $_SESSION['enemy'] = $enemy;
     }
 
     public static function battlestate()
     {
-        if (isset($_SESSION['enemy'])) { //Hata que no hay enemigo la batalla no h empezado
+        if (isset($_SESSION['enemy'])) { //Hasta que no hay enemigo la batalla no ha empezado
             $enemy = $_SESSION['enemy'];
             $character = $_SESSION['character'];
             //Has gando
             if ($enemy->getHpNow() <= 0) {
-                $_SESSION['log'] = "You won!!";
+                $_SESSION['log'] = "You won!!<br/>";
                 $_SESSION['won'] = 0; //Controlo la rareza del cofre si es 0 no hay cofre 
                 $character->addExperience($enemy->getExp());
 
@@ -293,21 +199,24 @@ class Fight_controller
                                 $_SESSION['won'] = 3;
                                 break;
                             case $random >= 6:
-                                if ($character->getArmor()->getRarity() != "legendary") { //Si tengo una mejor no la cojo
+                                if ($character->getArmor()->getRarity() != "legendary" && $character->getArmor()->getRarity() != "rare") { //Si tengo una mejor no la cojo
                                     $_SESSION['log'] .= "You have obtained: <br/> Rare armor";
                                     $character->setArmor("rare");
                                     $_SESSION['won'] = 2;
                                 }
                                 break;
                             case $random >= 3:
-                                if ($character->getWeapon()->getRarity() != "legendary") { //Si tengo una mejor no la cojo
+                                if ($character->getWeapon()->getRarity() != "legendary" && $character->getWeapon()->getRarity() != "rare") { //Si tengo una mejor no la cojo
                                     $_SESSION['log'] .= "You have obtained: <br/> Rare weapon";
                                     $character->setWeapon("rare");
                                     $_SESSION['won'] = 2;
                                 }
                                 break;
                             case $random == 2:
-                                if ($character->getWeapon()->getRarity() != "legendary") {//Para no equipar dos veces
+                                if ($character->getArmor()->getRarity() != "legendary") { //Para no equipar dos veces
+                                    if ($character->getArmor()->getRarity() == "rare") {
+                                        $character->setHp($character->getHp() - 7); //Desequipo la rara si la tenia puesta
+                                    }
                                     $_SESSION['log'] .= "You have obtained: <br/> Legendary armor";
                                     $character->setArmor("legendary");
                                     $_SESSION['won'] = 3;
@@ -337,12 +246,6 @@ class Fight_controller
                             break;
                     }
                 }
-            }
-
-            //Has perdido
-            if ($character->getHpNow() <= 0) {
-                $_SESSION['log'] = "You lose!!";
-                $_SESSION['won'] = 0;
             }
         }
     }

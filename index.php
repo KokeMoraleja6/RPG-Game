@@ -16,6 +16,7 @@ require_once "model/enemies/Wolf.php";
 require_once "model/enemies/Boss.php";
 require_once "model/enemies/Skeleton.php";
 require_once "model/enemies/Dragon.php";
+require_once "model/enemies/Thief.php";
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

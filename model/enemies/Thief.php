@@ -2,14 +2,14 @@
 
 require_once "Enemy.php";
 
-class Orc extends Enemy
+class Thief extends Enemy
 {
 
     // Constructor
     public function __construct()
     {
-        parent::__construct("Orc", 14, 12,  17);
-        $this->image = "resources/monsters/orc" . mt_rand(1, 4) . ".png";
+        parent::__construct("Desert Thief", 12, 10,  15);
+        $this->image = "resources/monsters/thief" . mt_rand(1, 2) . ".png";
     }
 
     // Methods
